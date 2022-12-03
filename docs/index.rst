@@ -3,14 +3,18 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to fortress_sdk's documentation!
-========================================
+Fortress-SDK --- Library to interface with the Fortress Platform
+================================================================
+Facilitates private computation over health data. 
+
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
-
+   tutorial
+   fortress_sdk
+   changelog
 
 Indices and tables
 ==================

@@ -4,5 +4,6 @@ def add_one(number):
         number (any): Input
     Returns:
         any: Output
+
     """
     return number + 1
