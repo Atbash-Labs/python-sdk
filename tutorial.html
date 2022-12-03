@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Tutorial &#8212; fortress_sdk 0.1.0 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="fortress_sdk package" href="fortress_sdk.html" />
+    <link rel="prev" title="Fortress-SDK — Library to interface with the Fortress Platform" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h1>
+<p>This will eventually be a tutorial for using Flask-Filter. Woot!</p>
+<p>The best way to use this library (when working with a normal Flask project) is
+to use the <code class="docutils literal notranslate"><span class="pre">FlaskFilter</span></code> extension object. Typical use of this object (as
+with all Flask extensions) is to instantiate a singleton object in an
+<code class="docutils literal notranslate"><span class="pre">extensions.py</span></code> module in your project. Register the extension in your
+application factory, and then import the singleton wherever you need to
+perform a filtered search.</p>
+<section id="the-flask-extension">
+<h2>1. The Flask Extension<a class="headerlink" href="#the-flask-extension" title="Permalink to this heading">¶</a></h2>
+<p>The simplest and most effective way to use this library is through the
+<code class="docutils literal notranslate"><span class="pre">FlaskFilter</span></code> extension. Instantiate this object as a singleton and
+register it with the <code class="docutils literal notranslate"><span class="pre">Flask</span></code> application object, and you can query
+resources with the <code class="docutils literal notranslate"><span class="pre">search</span></code> method from any view.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+
+<span class="c1"># Pet is a Model defined as subclass of db.Model</span>
+<span class="c1"># db is a SQLAlchemy and filter is a FlaskFilter object</span>
+<span class="c1"># SQLAlchemy and FlaskFilter objects created as singletons</span>
+<span class="kn">from</span> <span class="nn">pet_store</span> <span class="kn">import</span> <span class="n">Pet</span><span class="p">,</span> <span class="n">PetSchema</span>
+<span class="kn">from</span> <span class="nn">pet_store.extensions</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">filtr</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="n">filtr</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/pets/search&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
+<span class="k">def</span> <span class="nf">pet_search</span><span class="p">():</span>
+    <span class="n">pets</span> <span class="o">=</span> <span class="n">filtr</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Pet</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;filters&quot;</span><span class="p">),</span>
+                        <span class="n">PetSchema</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">pet_schema</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">pets</span><span class="p">)),</span> <span class="mi">200</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">fortress_sdk</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-flask-extension">1. The Flask Extension</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fortress_sdk.html">fortress_sdk package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Fortress-SDK — Library to interface with the Fortress Platform</a></li>
+      <li>Next: <a href="fortress_sdk.html" title="next chapter">fortress_sdk package</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2022, Fortress Labs.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 5.3.0</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/tutorial.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
