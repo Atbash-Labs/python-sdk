@@ -4,13 +4,15 @@ Tutorial
 The best way to interact with the network is to use the ``Buyer`` & ``Sftp`` extension objects and its associated methods.
 
 
-1. Querying Fortress Network
+1. Querying health datasets
 -----------------------------
 Executing a query :
+For executing a query, we get the api key and ip address from the web dashboard and then create a
+``Buyer`` instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results
+
 
 .. code-block:: python
 
-    import pandas as pd
     from fortress_sdk import Buyer
 
     api_key = "buyer_key"  # get this from the fortress web dashboard
@@ -24,7 +26,7 @@ Executing a query :
     result, accuracy = buyer.query(query=sql_query)
 
     # execution result and accuracy of the query
-    print(pd.DataFrame(result))
+    print(result)
     print(accuracy)
 
 Iterate over query history :
@@ -42,6 +44,9 @@ Iterate over query history :
 2. Uploading data to Fortress Network
 --------------------------------------
 Uploading data :
+For uploading data, we get the api key and ip address from the web dashboard and then create a
+``Sftp`` instance and then create a connection with ``get_connection()`` , now give the local path of files to be 
+uploaded with ``sftp.uploadlocal_path()``
 
 .. code-block:: python
 
