@@ -39,35 +39,54 @@
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h1>
 <p>This will eventually be a tutorial for using Flask-Filter. Woot!</p>
 <p>The best way to use this library (when working with a normal Flask project) is
-to use the <code class="docutils literal notranslate"><span class="pre">FlaskFilter</span></code> extension object. Typical use of this object (as
-with all Flask extensions) is to instantiate a singleton object in an
-<code class="docutils literal notranslate"><span class="pre">extensions.py</span></code> module in your project. Register the extension in your
-application factory, and then import the singleton wherever you need to
-perform a filtered search.</p>
-<section id="the-flask-extension">
-<h2>1. The Flask Extension<a class="headerlink" href="#the-flask-extension" title="Permalink to this heading">¶</a></h2>
-<p>The simplest and most effective way to use this library is through the
-<code class="docutils literal notranslate"><span class="pre">FlaskFilter</span></code> extension. Instantiate this object as a singleton and
-register it with the <code class="docutils literal notranslate"><span class="pre">Flask</span></code> application object, and you can query
-resources with the <code class="docutils literal notranslate"><span class="pre">search</span></code> method from any view.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span>
+to use the <code class="docutils literal notranslate"><span class="pre">Buyer</span></code> &amp; <cite>Sftp`</cite> extension objects to interact with the network.</p>
+<section id="querying-fortress-network">
+<h2>1. Querying Fortress Network<a class="headerlink" href="#querying-fortress-network" title="Permalink to this heading">¶</a></h2>
+<p>Executing a query :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">fortress_sdk</span> <span class="kn">import</span> <span class="n">Buyer</span>
 
-<span class="c1"># Pet is a Model defined as subclass of db.Model</span>
-<span class="c1"># db is a SQLAlchemy and filter is a FlaskFilter object</span>
-<span class="c1"># SQLAlchemy and FlaskFilter objects created as singletons</span>
-<span class="kn">from</span> <span class="nn">pet_store</span> <span class="kn">import</span> <span class="n">Pet</span><span class="p">,</span> <span class="n">PetSchema</span>
-<span class="kn">from</span> <span class="nn">pet_store.extensions</span> <span class="kn">import</span> <span class="n">db</span><span class="p">,</span> <span class="n">filtr</span>
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;buyer_key&quot;</span>  <span class="c1"># get this from the fortress web dashboard</span>
+<span class="n">ip_addr</span> <span class="o">=</span> <span class="s2">&quot;127.0.0.1&quot;</span>
 
-<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
-<span class="n">db</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
-<span class="n">filtr</span><span class="o">.</span><span class="n">init_app</span><span class="p">(</span><span class="n">app</span><span class="p">)</span>
+<span class="c1"># Initialize a buyer instance</span>
+<span class="n">buyer</span> <span class="o">=</span> <span class="n">Buyer</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">ip_addr</span><span class="p">)</span>
 
+<span class="c1"># Initiate a query</span>
+<span class="n">sql_query</span> <span class="o">=</span> <span class="s2">&quot;select count(*) as numpeople from public.condition_era_death&quot;</span>
+<span class="n">result</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">buyer</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">sql_query</span><span class="p">)</span>
 
-<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/api/v1/pets/search&#39;</span><span class="p">,</span> <span class="n">methods</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;POST&#39;</span><span class="p">])</span>
-<span class="k">def</span> <span class="nf">pet_search</span><span class="p">():</span>
-    <span class="n">pets</span> <span class="o">=</span> <span class="n">filtr</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">Pet</span><span class="p">,</span> <span class="n">request</span><span class="o">.</span><span class="n">json</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;filters&quot;</span><span class="p">),</span>
-                        <span class="n">PetSchema</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">jsonify</span><span class="p">(</span><span class="n">pet_schema</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">pets</span><span class="p">)),</span> <span class="mi">200</span>
+<span class="c1"># execution result and accuracy of the query</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="uploading-data-to-fortress-network">
+<h2>2. Uploading data to Fortress Network<a class="headerlink" href="#uploading-data-to-fortress-network" title="Permalink to this heading">¶</a></h2>
+<p>Uploading data :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">fortress_sdk</span> <span class="kn">import</span> <span class="n">Sftp</span>
+
+<span class="n">api_key</span> <span class="o">=</span> <span class="s2">&quot;apikey1234&quot;</span>
+<span class="n">ip_addr</span> <span class="o">=</span> <span class="s2">&quot;0.0.0.8080&quot;</span>
+
+<span class="c1"># Initialize a SFTP instance</span>
+<span class="n">sftp</span> <span class="o">=</span> <span class="n">Sftp</span><span class="p">(</span><span class="n">api_key</span><span class="p">,</span> <span class="n">ip_addr</span><span class="p">)</span>
+
+<span class="c1"># Connect to SFTP</span>
+<span class="n">sftp</span><span class="o">.</span><span class="n">get_connection</span><span class="p">()</span>
+
+<span class="c1"># upload files to enclave SFTP location from local</span>
+<span class="n">local_path</span> <span class="o">=</span> <span class="s2">&quot;/prince/health/person.csv&quot;</span>
+<span class="n">sftp</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">local_path</span><span class="p">)</span>
+
+<span class="c1"># list files at enclave SFTP location after upload</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/healthfiles&quot;</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;List of files at location </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">f</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">sftp</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)])</span>
+
+<span class="c1"># Disconnect from SFTP</span>
+<span class="n">sftp</span><span class="o">.</span><span class="n">disconnect</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -93,7 +112,8 @@ resources with the <code class="docutils literal notranslate"><span class="pre">
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#the-flask-extension">1. The Flask Extension</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#querying-fortress-network">1. Querying Fortress Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#uploading-data-to-fortress-network">2. Uploading data to Fortress Network</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fortress_sdk.html">fortress_sdk package</a></li>
