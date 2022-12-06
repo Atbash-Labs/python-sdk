@@ -49,24 +49,48 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_columns">
 <span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_key</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_columns" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Return table ddl columns
+Args:</p>
+<blockquote>
+<div><p>query_key: subkey query key</p>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>returns the list of columns</p>
+</dd>
+</dl>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_key">
 <span class="sig-name descname"><span class="pre">get_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sub key for this buyer</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>returns a subkey</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_key_list">
 <span class="sig-name descname"><span class="pre">get_key_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_key_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the list of sub key for this buyer</p>
+<dd><p>Return the list of sub keys for this buyer</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>returns the list of sub keys</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.query">
 <span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initiate the query and return the result</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>query_key: [optional] subkey query key
+query: sql query string</p>
+</dd>
+<dt>Returns:</dt><dd><p>returns the accuracy,result of the query</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -84,18 +108,27 @@
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Sftp.get_connection">
 <span class="sig-name descname"><span class="pre">get_connection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Sftp.get_connection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Initiate a sftp connection</p>
+</dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Sftp.listdir">
 <span class="sig-name descname"><span class="pre">listdir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">remote_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Sftp.listdir" title="Permalink to this definition">¶</a></dt>
 <dd><p>lists all the files and directories in the specified path and returns them</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>remote_path: remote file path for patient data files list retrieval</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Sftp.upload">
 <span class="sig-name descname"><span class="pre">upload</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source_local_path</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Sftp.upload" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uploads the source files from local to the sftp server.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>source_local_path: local file path for patient data</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>

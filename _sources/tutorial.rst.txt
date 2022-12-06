@@ -8,7 +8,7 @@ The best way to interact with the network is to use the ``Buyer`` & ``Sftp`` ext
 -----------------------------
 Executing a query :
 For executing a query, we get the api key and ip address from the web dashboard and then create a
-``Buyer`` instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results
+``Buyer`` instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results.
 
 
 .. code-block:: python
