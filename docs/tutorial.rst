@@ -10,8 +10,8 @@ application factory, and then import the singleton wherever you need to
 perform a filtered search.
 
 
-1. The Flask Extension
-----------------------
+1. Querying Fortress Network
+-----------------------------
 The simplest and most effective way to use this library is through the
 ``FlaskFilter`` extension. Instantiate this object as a singleton and
 register it with the ``Flask`` application object, and you can query
@@ -37,3 +37,6 @@ resources with the ``search`` method from any view.
         pets = filtr.search(Pet, request.json.get("filters"),
                             PetSchema)
         return jsonify(pet_schema.dump(pets)), 200
+
+2. Uploading data to Fortress Network
+--------------------------------------

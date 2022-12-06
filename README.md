@@ -5,8 +5,8 @@
 sphinx-apidoc -o docs/ fortress_sdk/
 ```
 ```bash
-#  To local preview docs
-cd doc/
+#  To local preview docs and generated docs will be loacted in docs/_build
+cd docs/
 make html 
 ```
 
