@@ -1,7 +1,6 @@
 ###########################################
 ####      EXAMPLE Querying USAGE       ####
 ###########################################
-import pandas as pd
 from fortress_sdk import Buyer
 
 ###########################################
@@ -21,5 +20,5 @@ sql_query = "select count(*) as numpeople from public.condition_era_death"
 result, accuracy = buyer.query(query=sql_query)
 
 # execution result and accuracy of the query
-print(pd.DataFrame(result))
+print(result)
 print(accuracy)
