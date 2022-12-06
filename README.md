@@ -1,14 +1,6 @@
 # Fortress Python SDK
 
-```bash
-#  Local doc metadata files auto generate
-sphinx-apidoc -o docs/ fortress_sdk/
-```
-```bash
-#  To local preview docs and generated docs will be loacted in docs/_build
-cd docs/
-make html 
-```
+## Usage:
 
 You can download the module by executing the following command 
 (replace `<tag>` with the version you would like to download):
@@ -20,3 +12,18 @@ The module can then be used as follows:
 ```python
 from fortress_sdk import *
 ```
+
+check out these [demo](./examples)  interactions with the library
+
+## Local setup:
+
+```bash
+#  Local doc metadata files auto generate
+sphinx-apidoc -o docs/ fortress_sdk/
+```
+```bash
+#  To local preview docs and generated docs will be loacted in docs/_build
+cd docs/
+make html 
+```
+

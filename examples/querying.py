@@ -1,7 +1,7 @@
 ###########################################
 ####      EXAMPLE Querying USAGE       ####
 ###########################################
-
+import pandas as pd
 from fortress_sdk import Buyer
 
 ###########################################
@@ -12,16 +12,14 @@ from fortress_sdk import Buyer
 api_key = "buyer_key"  # get this from the fortress web dashboard
 ip_addr = "127.0.0.1"
 
-payload = {"buyer_api_key": api_key}
+# Initialize a buyer instance
 buyer = Buyer(api_key, ip_addr)
 
-# retrieve the query sub key
-query_key = buyer.get_key()
 
 # Initiate a query
-sql_query = "select count(*) as numpeople from public.condition_era where condition_concept_id = 313217"  # we can also take in .sql file path and parse and send it internally
-result, accuracy = buyer.query(query_key, sql_query)
+sql_query = "select count(*) as numpeople from public.condition_era_death"
+result, accuracy = buyer.query(query=sql_query)
 
 # execution result and accuracy of the query
-print(result)
+print(pd.DataFrame(result))
 print(accuracy)
