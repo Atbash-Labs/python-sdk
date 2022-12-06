@@ -7,6 +7,9 @@ The best way to interact with the network is to use the ``Buyer`` & ``Sftp`` ext
 1. Querying health datasets
 -----------------------------
 Executing a query :
+For executing a query, we get the api key and ip address from the web dashboard and then create a
+``Buyer`` instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results
+
 
 .. code-block:: python
 
@@ -41,6 +44,9 @@ Iterate over query history :
 2. Uploading data to Fortress Network
 --------------------------------------
 Uploading data :
+For uploading data, we get the api key and ip address from the web dashboard and then create a
+``Sftp`` instance and then create a connection with ``get_connection()`` , now give the local path of files to be 
+uploaded with ``sftp.uploadlocal_path()``
 
 .. code-block:: python
 
