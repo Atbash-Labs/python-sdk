@@ -1,9 +1,7 @@
 Tutorial
 ========
-This will eventually be a tutorial for using Flask-Filter. Woot!
 
-The best way to use this library (when working with a normal Flask project) is
-to use the ``Buyer`` & `Sftp`` extension objects to interact with the network.
+The best way to interact with the network is to use the ``Buyer`` & ``Sftp`` extension objects and its associated methods.
 
 
 1. Querying Fortress Network
