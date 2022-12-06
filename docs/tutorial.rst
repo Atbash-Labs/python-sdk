@@ -27,6 +27,18 @@ Executing a query :
     print(pd.DataFrame(result))
     print(accuracy)
 
+Iterate over query history :
+
+.. code-block:: python
+
+    ###########################################
+    ####          Query History            ####
+    ###########################################
+
+    # you can access the query history with:
+    all_queries = buyer.all_queries 
+    print(all_queries)
+
 2. Uploading data to Fortress Network
 --------------------------------------
 Uploading data :
