@@ -28,6 +28,7 @@ class Sftp:
             print(f"Connected to {self.ip_addr} as {self.username}.")
 
     def get_connection(self):
+        """Initiate a sftp connection"""
 
         enclave_url = "https://{}:{}/get_creds".format(self.ip_addr, self.port)
 
@@ -48,6 +49,9 @@ class Sftp:
     def upload(self, source_local_path):
         """
         Uploads the source files from local to the sftp server.
+
+        Args:
+            source_local_path: local file path for patient data
         """
 
         try:
@@ -65,7 +69,11 @@ class Sftp:
             raise Exception(err)
 
     def listdir(self, remote_path):
-        """lists all the files and directories in the specified path and returns them"""
+        """lists all the files and directories in the specified path and returns them
+
+        Args:
+            remote_path: remote file path for patient data files list retrieval
+        """
         for obj in self.connection.listdir(remote_path):
             yield obj
 
@@ -85,7 +93,11 @@ class Buyer:
             self.key_list = [self.get_key()]
 
     def get_key(self):
-        """Return the sub key for this buyer"""
+        """Return the sub key for this buyer
+
+        Returns:
+            returns a subkey
+        """
         subkey_url = f"{self.url}/get_subkey"
 
         payload = {"buyer_api_key": self.api_key}
@@ -106,7 +118,11 @@ class Buyer:
             return None
 
     def get_key_list(self):
-        """Return the list of sub key for this buyer"""
+        """Return the list of sub keys for this buyer
+
+        Returns:
+            returns the list of sub keys
+        """
         subkey_list_url = f"{self.url}/list_subkeys"
 
         payload = {"buyer_api_key": self.api_key}
@@ -122,7 +138,15 @@ class Buyer:
         return subkey_list
 
     def query(self, query_key=None, query=""):
-        """Initiate the query and return the result"""
+        """Initiate the query and return the result
+
+        Args:
+            query_key: [optional] subkey query key
+            query: sql query string
+
+        Returns:
+            returns the accuracy,result of the query
+        """
         if query_key is None:
             query_key = self.key_list[0]
         query_url = f"{self.url}/execute_query"
@@ -154,6 +178,13 @@ class Buyer:
         return result, accuracy
 
     def get_columns(self, query_key):
+        """Return table ddl columns
+        Args:
+            query_key: subkey query key
+
+        Returns:
+            returns the list of columns
+        """
         query_url = f"{self.url}/list_columns"
 
         payload = {"buyer_api_key": self.api_key, "subkey": query_key}
