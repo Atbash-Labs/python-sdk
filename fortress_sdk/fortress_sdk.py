@@ -3,13 +3,13 @@ import requests
 
 
 class Sftp:
-    def __init__(self, api_key, ip_addr):
+    def __init__(self, api_key, ip_addr, port=8080):
         """Constructor Method"""
         # Set connection object to None (initial value)
         self.connection = None
         self.api_key = api_key
         self.ip_addr = ip_addr
-        self.port = 8080
+        self.port = port
 
     def _connect(self):
         """Connects to the sftp server and returns the sftp connection object"""
@@ -77,9 +77,12 @@ class Buyer:
         self.query_count = 0
         self.all_queries = []
         self.ip_addr = ip_addr
-        self.port = 8080
+        self.port = port
         self.terminator = "s" if use_https else ""
         self.url = f"http{self.terminator}://{self.ip_addr}:{self.port}"
+        self.key_list = self.get_key_list()
+        if not self.key_list:
+            self.key_list = [self.get_key()]
 
     def get_key(self):
         """Return the sub key for this buyer"""
@@ -95,6 +98,7 @@ class Buyer:
 
         try:
             subkey = rsp["subkey"]
+            self.key_list = [subkey] + self.key_list
 
             return subkey
         except:
@@ -109,7 +113,7 @@ class Buyer:
         r = requests.get(subkey_list_url, params=payload)
         rsp = r.json()
 
-        if rsp.status_code != 200:
+        if r.status_code != 200:
             error = rsp["message"]
             print(error)
 
@@ -117,8 +121,10 @@ class Buyer:
 
         return subkey_list
 
-    def query(self, query_key, query):
+    def query(self, query_key=None, query=""):
         """Initiate the query and return the result"""
+        if query_key is None:
+            query_key = self.key_list[0]
         query_url = f"{self.url}/execute_query"
 
         curr_query = {}
@@ -134,7 +140,7 @@ class Buyer:
                     [],
                     "No results had sufficiently large cell sizes to be nonidentifying",
                 )
-            print(error)
+            return error, []
 
         result = rsp["result"]
         accuracy = rsp["accuracy"]
