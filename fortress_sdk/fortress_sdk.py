@@ -133,9 +133,11 @@ class Buyer:
             error = rsp["message"]
             print(error)
 
-        subkey_list = rsp["subkeys"]
-
-        return subkey_list
+        try:
+            subkey_list = rsp["subkeys"]
+            return subkey_list
+        except:
+            return None
 
     def query(self, query_key=None, query=""):
         """Initiate the query and return the result
