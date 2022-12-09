@@ -16,6 +16,31 @@ def new_invalid_buyer():
     return buyer
 
 
+class TestGetKeyList(unittest.TestCase):
+    def test_get_key_list_success(self):
+        buyer = new_valid_buyer()
+        key_list = buyer.get_key_list()
+
+        self.assertEqual(len(key_list), 1)
+
+    def test_key_list_added_key(self):
+        buyer = new_valid_buyer()
+
+        key_list = buyer.get_key_list()
+        self.assertEqual(len(key_list), 1)
+
+        _ = buyer.get_key()
+
+        key_list = buyer.get_key_list()
+        self.assertEqual(len(key_list), 2)
+
+    def test_invalid_buyer(self):
+        buyer = new_invalid_buyer()
+        key_list = buyer.get_key_list()
+
+        self.assertEqual(key_list, None)
+
+
 class TestGetKey(unittest.TestCase):
     def test_get_key_success(self):
         buyer = new_valid_buyer()
