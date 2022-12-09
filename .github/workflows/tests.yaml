@@ -19,7 +19,8 @@ jobs:
     steps:
       - name: Check for dockerenv file
         run: (ls /.dockerenv && echo Found dockerenv) || (echo No dockerenv)
-  build-and-test-package:  
+  build-and-test-package:
+    runs-on: ubuntu-latest  
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python 3.8
