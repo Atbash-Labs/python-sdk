@@ -15,7 +15,7 @@ jobs:
           command: "docker run -it --rm -e ADMIN_API_KEY="admin_key" -e SELLER_API_KEY="seller_key" -e BUYER_API_KEY="buyer_key" -p 8080:8080 ghcr.io/atbash-labs/enclave-test --pull always"
       - name: Set up Python 3.8
         uses: actions/setup-python@v4
-        with:
+        with:e
           python-version: "3.8"
       - name: Install dependencies
         run: |
