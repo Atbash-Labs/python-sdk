@@ -5,24 +5,27 @@ on:
     - pfefar/tests
 
 jobs:
-  registry-login:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Log in to the Container registry
-        uses: docker/login-action@v2
-        env:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: "atbash-labs/enclave-test"
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+  # registry-login:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Log in to the Container registry
+  #       uses: docker/login-action@v2
+  #       env:
+  #         REGISTRY: ghcr.io
+  #         IMAGE_NAME: "atbash-labs/enclave-test"
+  #       with:
+  #         registry: ${{ env.REGISTRY }}
+  #         username: ${{ github.actor }}
+  #         password: ${{ secrets.GITHUB_TOKEN }}
 
   build-package-and-run-tests:
     runs-on: ubuntu-latest
     needs: registry-login
     container:
       image: ghcr.io/atbash-labs/enclave-test:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
       env:
         ADMIN_API_KEY: admin_key
         BUYER_API_KEY: buyer_key
