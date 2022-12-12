@@ -54,3 +54,12 @@ def test_invalid_buyer_for_new_key():
     new_key = buyer.get_key()
 
     assert new_key == None
+
+
+def test_query_success():
+    buyer = new_valid_buyer()
+    sql_query = "select count(*) as numpeople from public.condition_era_death"
+    result, accuracy = buyer.query(query=sql_query)
+
+    assert result != None
+    assert accuracy != ""
