@@ -11,12 +11,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Login to GitHub Container Registry
-        uses: docker/login-action@1.0.0
+        uses: docker/login-action@v1
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - uses: cyrusroshan/generic-docker-run@main
+      - uses: cyrusroshan/generic-docker-run@1.0.0
         with:
           command: "docker run -e ADMIN_API_KEY="admin_key" -e SELLER_API_KEY="seller_key" -e BUYER_API_KEY="buyer_key" -p 8080:8080 ghcr.io/atbash-labs/enclave-test " 
       - name: Set up Python 3.8
