@@ -4,7 +4,7 @@ on:
     paths:
       - 'fortress_sdk/**'
       - 'tests/**'
-      - '.github/workflows/tests.yml'
+      - '.github/workflows/tests.yaml'
 
 jobs:
   build-package-and-run-tests:
