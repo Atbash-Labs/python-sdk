@@ -1,19 +1,21 @@
 name: Tests
 on:
   push:
-    branches:
-    - pfefar/tests
+    paths:
+      - 'fortress_sdk/**'
+      - 'tests/**'
+      - '.github/workflows/tests.yml'
 
 jobs:
   build-package-and-run-tests:
     runs-on: ubuntu-latest
     steps:
-      # - name: Login to GitHub Container Registry
-      #   uses: docker/login-action@v2
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ github.actor }}
-      #     password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - uses: docker-practice/actions-setup-docker@master
       - run: |
           docker run -d -t -e ADMIN_API_KEY="admin_key" -e SELLER_API_KEY="seller_key" -e BUYER_API_KEY="buyer_key" -p 8080:8080 ghcr.io/atbash-labs/enclave-test
