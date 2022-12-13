@@ -170,6 +170,14 @@ class Buyer:
 
         result = rsp["result"]
         accuracy = rsp["accuracy"]
+        accuracy_num = float(accuracy.split("within: ")[1].split("%")[0])
+        accuracy_num = 10 * accuracy_num
+        accuracy = (
+            f"Results of this query can be expected to be within: "
+            f"{round(accuracy_num, 2)}%"
+            f" of the true value "
+            f"with 95% probability"
+        )
 
         # record query and results
         curr_query["query"] = query
@@ -179,7 +187,7 @@ class Buyer:
 
         return result, accuracy
 
-    def get_columns(self, query_key):
+    def get_columns(self, query_key=None):
         """Return table ddl columns
         Args:
             query_key: subkey query key
@@ -187,6 +195,9 @@ class Buyer:
         Returns:
             returns the list of columns
         """
+
+        if query_key is None:
+            query_key = self.key_list[0]
         query_url = f"{self.url}/list_columns"
 
         payload = {"buyer_api_key": self.api_key, "subkey": query_key}
