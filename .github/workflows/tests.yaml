@@ -32,6 +32,6 @@ jobs:
       - name: install fortress sdk
         run: |
           pip install -e .
-          sleep 2m
+          sleep 1m
       - name: Test with pytest
         run: pytest 
