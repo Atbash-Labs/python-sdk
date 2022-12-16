@@ -22,3 +22,6 @@ result, accuracy = buyer.query(query=sql_query)
 # execution result and accuracy of the query
 print(result)
 print(accuracy)
+
+# Pretty print query history
+buyer.print_query_history()

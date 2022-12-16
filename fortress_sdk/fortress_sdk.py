@@ -1,5 +1,6 @@
 import pysftp
 import requests
+from prettytable import PrettyTable
 
 
 class Sftp:
@@ -170,16 +171,25 @@ class Buyer:
 
         result = rsp["result"]
         accuracy = rsp["accuracy"]
+        accuracy_num = float(accuracy.split("within: ")[1].split("%")[0])
+        accuracy_num = 10 * accuracy_num
+        accuracy = (
+            f"Results of this query can be expected to be within: "
+            f"{round(accuracy_num, 2)}%"
+            f" of the true value "
+            f"with 95% probability"
+        )
 
         # record query and results
         curr_query["query"] = query
         curr_query["result"] = result
+        curr_query["accuracy"] = accuracy
         self.all_queries.append(curr_query)
         self.query_count += 1
 
         return result, accuracy
 
-    def get_columns(self, query_key):
+    def get_columns(self, query_key=None):
         """Return table ddl columns
         Args:
             query_key: subkey query key
@@ -187,6 +197,9 @@ class Buyer:
         Returns:
             returns the list of columns
         """
+
+        if query_key is None:
+            query_key = self.key_list[0]
         query_url = f"{self.url}/list_columns"
 
         payload = {"buyer_api_key": self.api_key, "subkey": query_key}
@@ -199,3 +212,17 @@ class Buyer:
             return None
         else:
             return rsp["columns"]
+
+    def print_query_history(self):
+        """Pretty print the history queries with accuracy and results"""
+        pt = PrettyTable()
+        pt.field_names = [
+            "Query",
+            "Result",
+            "Accuracy",
+        ]
+
+        for query in self.all_queries:
+            pt.add_row([query["query"], query["result"], query["accuracy"][44:]])
+
+        print(pt)

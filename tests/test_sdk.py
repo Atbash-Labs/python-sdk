@@ -63,3 +63,18 @@ def test_query_success():
 
     assert result != None
     assert accuracy != ""
+
+
+def test_query_history():
+    buyer = new_valid_buyer()
+    sql_query = "select count(*) as numpeople from public.condition_era_death"
+    _ = buyer.query(query=sql_query)
+    sql_query = "select count(*) as numpeople from public.condition_era_death"
+    _ = buyer.query(query=sql_query)
+
+    assert len(buyer.all_queries) == 2
+
+    sql_query = "select count(*) as numpeople from public.condition_era_death"
+    _ = buyer.query(query=sql_query)
+
+    assert len(buyer.all_queries) == 3
