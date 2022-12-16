@@ -29,17 +29,23 @@ For executing a query, we get the api key and ip address from the web dashboard 
     print(result)
     print(accuracy)
 
-Iterate over query history :
+Pretty print query history :
 
 .. code-block:: python
 
     ###########################################
-    ####          Query History            ####
+    ####        Print Query History        ####
     ###########################################
 
-    # you can access the query history with:
-    all_queries = buyer.all_queries 
-    print(all_queries)
+    buyer.print_query_history()
+
+    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
+    |                            Query                             |          Result          |                       Accuracy                      |
+    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
+    | select count(*) as numpeople from public.condition_era_death | [['numpeople'], [30297]] | within: 0.1% of the true value with 95% probability |
+    | select count(*) as numpeople from public.condition_era_death | [['numpeople'], [30297]] | within: 0.1% of the true value with 95% probability |
+    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
+
 
 2. Uploading data to Fortress Network
 --------------------------------------

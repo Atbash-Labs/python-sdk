@@ -1,5 +1,6 @@
 import pysftp
 import requests
+from prettytable import PrettyTable
 
 
 class Sftp:
@@ -182,6 +183,7 @@ class Buyer:
         # record query and results
         curr_query["query"] = query
         curr_query["result"] = result
+        curr_query["accuracy"] = accuracy
         self.all_queries.append(curr_query)
         self.query_count += 1
 
@@ -210,3 +212,17 @@ class Buyer:
             return None
         else:
             return rsp["columns"]
+
+    def print_query_history(self):
+        """Pretty print the history queries with accuracy and results"""
+        pt = PrettyTable()
+        pt.field_names = [
+            "Query",
+            "Result",
+            "Accuracy",
+        ]
+
+        for query in self.all_queries:
+            pt.add_row([query["query"], query["result"], query["accuracy"][44:]])
+
+        print(pt)
