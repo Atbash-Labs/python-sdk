@@ -215,14 +215,16 @@ class Buyer:
 
     def print_query_history(self):
         """Pretty print the history queries with accuracy and results"""
-        pt = PrettyTable()
-        pt.field_names = [
-            "Query",
-            "Result",
-            "Accuracy",
-        ]
+
+        query_format = " query ===> {q} \n result ===> {r} \n accuracy ===> {a} \n"
+
+        table_frame = "+" + "-" * 80 + "+"
 
         for query in self.all_queries:
-            pt.add_row([query["query"], query["result"], query["accuracy"][44:]])
-
-        print(pt)
+            print(table_frame)
+            query_string = query_format.format(
+                q=query["query"],
+                r=query["result"],
+                a=query["accuracy"][44:],
+            )
+            print(query_string)
