@@ -1,6 +1,5 @@
 import pysftp
 import requests
-from prettytable import PrettyTable
 
 
 class Sftp:
