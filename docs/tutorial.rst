@@ -39,12 +39,22 @@ Pretty print query history :
 
     buyer.print_query_history()
 
-    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
-    |                            Query                             |          Result          |                       Accuracy                      |
-    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
-    | select count(*) as numpeople from public.condition_era_death | [['numpeople'], [30297]] | within: 0.1% of the true value with 95% probability |
-    | select count(*) as numpeople from public.condition_era_death | [['numpeople'], [30297]] | within: 0.1% of the true value with 95% probability |
-    +--------------------------------------------------------------+--------------------------+-----------------------------------------------------+
+    +--------------------------------------------------------------------------------+
+    query ===> select count(*) as numpeople from public.condition_era_death
+    result ===> [['numpeople'], [30297]]
+    accuracy ===> within: 0.1% of the true value with 95% probability
+
+    +--------------------------------------------------------------------------------+
+    query ===> select count(*) as numpeople from public.condition_era_death
+    result ===> [['numpeople'], [30297]]
+    accuracy ===> within: 0.1% of the true value with 95% probability
+
+    +--------------------------------------------------------------------------------+
+    query ===> select count(*) as numpeople from public.condition_era_death
+    result ===> [['numpeople'], [30297]]
+    accuracy ===> within: 0.1% of the true value with 95% probability
+
+    +--------------------------------------------------------------------------------+
 
 
 2. Uploading data to Fortress Network
