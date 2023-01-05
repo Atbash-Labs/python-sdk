@@ -1,4 +1,3 @@
-import pysftp
 import requests
 
 
