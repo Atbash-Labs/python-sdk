@@ -16,10 +16,11 @@ class Buyer:
             self.key_list = [self.get_key()]
 
     def get_key(self):
-        """Return the sub key for this buyer
+        """
+        Return the sub key for this buyer
 
-        Returns:
-            returns a subkey
+        :return: the sub key for the instantiated buyer object
+        :rtype: str
         """
         subkey_url = f"{self.url}/get_subkey"
 
@@ -41,10 +42,11 @@ class Buyer:
             return None
 
     def get_key_list(self):
-        """Return the list of sub keys for this buyer
+        """
+        Return the list of sub keys for this buyer
 
-        Returns:
-            returns the list of sub keys
+        :return: returns the list of sub keys
+        :rtype: list
         """
         subkey_list_url = f"{self.url}/list_subkeys"
 
@@ -63,14 +65,17 @@ class Buyer:
             return None
 
     def query(self, query_key=None, query=""):
-        """Initiate the query and return the result
+        """
+        Initiate the query and return the result
 
-        Args:
-            query_key: [optional] subkey query key
-            query: sql query string
+        :param str query_key: [optional] subkey query key
+        :param str query: query string
 
-        Returns:
-            returns the accuracy,result of the query
+        :return result: result of the query
+        :rtype: list
+
+        :return result: accuracy of the query
+        :rtype: str
         """
         if query_key is None:
             query_key = self.key_list[0]
@@ -112,12 +117,14 @@ class Buyer:
         return result, accuracy
 
     def get_columns(self, query_key=None):
-        """Return table ddl columns
-        Args:
-            query_key: subkey query key
+        """
+        Return table ddl columns
 
-        Returns:
-            returns the list of columns
+        :param str query_key: [optional] subkey query key
+        :param str query: query string
+
+        :return: returns the list of columns
+        :rtype: list
         """
 
         if query_key is None:
