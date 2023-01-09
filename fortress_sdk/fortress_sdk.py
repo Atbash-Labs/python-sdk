@@ -19,8 +19,8 @@ class Buyer:
         """
         Return the sub key for this buyer
 
-        :return: the sub key for the instantiated buyer object
-        :rtype: str
+        Returns:
+                key (str): the sub key for the instantiated buyer object
         """
         subkey_url = f"{self.url}/get_subkey"
 
@@ -45,8 +45,8 @@ class Buyer:
         """
         Return the list of sub keys for this buyer
 
-        :return: returns the list of sub keys
-        :rtype: list
+        Returns:
+                key_list (list): returns the list of sub keys
         """
         subkey_list_url = f"{self.url}/list_subkeys"
 
@@ -68,14 +68,13 @@ class Buyer:
         """
         Initiate the query and return the result
 
-        :param str query_key: [optional] subkey query key
-        :param str query: query string
+        Parameters:
+                query_key (str): [optional] subkey query key
+                query (str): query string
 
-        :return result: result of the query
-        :rtype: list
-
-        :return result: accuracy of the query
-        :rtype: str
+        Returns:
+                result (list): result of the query
+                accuracy (str): accuracy of the query
         """
         if query_key is None:
             query_key = self.key_list[0]
@@ -120,11 +119,11 @@ class Buyer:
         """
         Return table ddl columns
 
-        :param str query_key: [optional] subkey query key
-        :param str query: query string
+        Parameters:
+                query_key (str): [optional] subkey query key
 
-        :return: returns the list of columns
-        :rtype: list
+        Returns:
+                columns (list): returns the list of columns
         """
 
         if query_key is None:
