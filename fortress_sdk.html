@@ -47,18 +47,10 @@
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_columns">
 <span class="sig-name descname"><span class="pre">get_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_columns" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return table ddl columns</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>query_key</strong> (<em>str</em>) – [optional] subkey query key</p></li>
-<li><p><strong>query</strong> (<em>str</em>) – query string</p></li>
-</ul>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>query_key (str): [optional] subkey query key</p>
 </dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><p>returns the list of columns</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
+<dt>Returns:</dt><dd><p>columns (list): returns the list of columns</p>
 </dd>
 </dl>
 </dd></dl>
@@ -67,12 +59,8 @@
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_key">
 <span class="sig-name descname"><span class="pre">get_key</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_key" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the sub key for this buyer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>the sub key for the instantiated buyer object</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>str</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>key (str): the sub key for the instantiated buyer object</p>
 </dd>
 </dl>
 </dd></dl>
@@ -81,12 +69,8 @@
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.get_key_list">
 <span class="sig-name descname"><span class="pre">get_key_list</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.get_key_list" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the list of sub keys for this buyer</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><p>returns the list of sub keys</p>
-</dd>
-<dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>key_list (list): returns the list of sub keys</p>
 </dd>
 </dl>
 </dd></dl>
@@ -101,24 +85,12 @@
 <dt class="sig sig-object py" id="fortress_sdk.fortress_sdk.Buyer.query">
 <span class="sig-name descname"><span class="pre">query</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query_key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#fortress_sdk.fortress_sdk.Buyer.query" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initiate the query and return the result</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>query_key</strong> (<em>str</em>) – [optional] subkey query key</p></li>
-<li><p><strong>query</strong> (<em>str</em>) – query string</p></li>
-</ul>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>query_key (str): [optional] subkey query key
+query (str): query string</p>
 </dd>
-<dt class="field-even">Return result<span class="colon">:</span></dt>
-<dd class="field-even"><p>result of the query</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>list</p>
-</dd>
-<dt class="field-even">Return result<span class="colon">:</span></dt>
-<dd class="field-even"><p>accuracy of the query</p>
-</dd>
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p>str</p>
+<dt>Returns:</dt><dd><p>result (list): result of the query
+accuracy (str): accuracy of the query</p>
 </dd>
 </dl>
 </dd></dl>
