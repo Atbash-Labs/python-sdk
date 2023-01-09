@@ -2,8 +2,32 @@ import requests
 
 
 class Buyer:
+    """
+    ``Buyer`` object to interact with the network
+
+    :param api_key: The ``API KEY`` from the website console
+    :type api_key: str
+    :ivar api_key: This is where we store the api key
+    :vartype api_key: str
+
+    :param ip_addr: The ``IP Address`` key from the website console
+    :type ip_addr: str
+    :ivar ip_addr: This is where we store ip address
+    :vartype ip_addr: str
+
+    :param port: The ``PORT`` from the website console
+    :type port: int
+    :ivar port: This is where we store the port
+    :vartype port: int
+
+    :param use_https: the boolean for the https toggle
+    :type use_https: bool
+    :ivar use_https: This is where we store toogle
+    :vartype use_https: bool
+
+    """
+
     def __init__(self, api_key, ip_addr, port=8080, use_https=False):
-        """Constructor Method"""
         self.api_key = api_key
         self.query_count = 0
         self.all_queries = []
@@ -19,8 +43,8 @@ class Buyer:
         """
         Return the sub key for this buyer
 
-        Returns:
-                key (str): the sub key for the instantiated buyer object
+        :return: the sub key for the instantiated buyer object
+        :rtype: str
         """
         subkey_url = f"{self.url}/get_subkey"
 
@@ -45,8 +69,8 @@ class Buyer:
         """
         Return the list of sub keys for this buyer
 
-        Returns:
-                key_list (list): returns the list of sub keys
+        :return: returns the list of sub keys
+        :rtype: list
         """
         subkey_list_url = f"{self.url}/list_subkeys"
 
@@ -68,13 +92,11 @@ class Buyer:
         """
         Initiate the query and return the result
 
-        Parameters:
-                query_key (str): [optional] subkey query key
-                query (str): query string
+        :param str query_key: [optional] subkey query key
+        :param str query: query string
 
-        Returns:
-                result (list): result of the query
-                accuracy (str): accuracy of the query
+        :return: return ``result`` and ``accuracy`` of the query
+        :rtype: list,str
         """
         if query_key is None:
             query_key = self.key_list[0]
@@ -119,11 +141,11 @@ class Buyer:
         """
         Return table ddl columns
 
-        Parameters:
-                query_key (str): [optional] subkey query key
+        :param str query_key: [optional] subkey query key
+        :param str query: query string
 
-        Returns:
-                columns (list): returns the list of columns
+        :return: returns the list of columns
+        :rtype: list
         """
 
         if query_key is None:
