@@ -10,7 +10,7 @@ pip install git+https://github.com/Atbash-Labs/python-sdk@<tag>
 
 The module can then be used as follows:
 ```python
-from fortress_sdk import Buyer,Sftp
+from fortress_sdk import Buyer
 ```
 
 check out these [demo](./examples)  interactions with the library
