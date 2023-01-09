@@ -7,24 +7,15 @@ class Buyer:
 
     :param api_key: The ``API KEY`` from the website console
     :type api_key: str
-    :ivar api_key: This is where we store the api key
-    :vartype api_key: str
 
     :param ip_addr: The ``IP Address`` key from the website console
     :type ip_addr: str
-    :ivar ip_addr: This is where we store ip address
-    :vartype ip_addr: str
 
     :param port: The ``PORT`` from the website console
     :type port: int
-    :ivar port: This is where we store the port
-    :vartype port: int
 
     :param use_https: the boolean for the https toggle
     :type use_https: bool
-    :ivar use_https: This is where we store toogle
-    :vartype use_https: bool
-
     """
 
     def __init__(self, api_key, ip_addr, port=8080, use_https=False):
