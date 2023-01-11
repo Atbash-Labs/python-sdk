@@ -79,6 +79,34 @@ For executing a query, we get the api key and ip address from the web dashboard 
 </pre></div>
 </div>
 <p>Get queryable table columns :</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">###########################################</span>
+<span class="c1">####      Print Table DDL columns      ####</span>
+<span class="c1">###########################################</span>
+
+<span class="c1"># Print columns</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------------------COLUMNS-----------------------&quot;</span><span class="p">)</span>
+<span class="n">columns</span> <span class="o">=</span> <span class="n">buyer</span><span class="o">.</span><span class="n">get_columns</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="s2">&quot;PERSON&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="s2">&quot;PERSON_VISIT_OCCURRENCE&quot;</span><span class="p">])</span>
+
+<span class="o">-----------------------</span><span class="n">COLUMNS</span><span class="o">--------------------</span>
+<span class="p">[</span><span class="s1">&#39;birth_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;care_site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;day_of_birth&#39;</span><span class="p">,</span> <span class="s1">&#39;ethnicity_concept_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ethnicity_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;ethnicity_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;gender_concept_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;gender_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;gender_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;location_id&#39;</span><span class="p">,</span> <span class="s1">&#39;month_of_birth&#39;</span><span class="p">,</span>
+<span class="s1">&#39;person_id&#39;</span><span class="p">,</span> <span class="s1">&#39;person_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;provider_id&#39;</span><span class="p">,</span> <span class="s1">&#39;race_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;race_source_concept_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;race_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;year_of_birth&#39;</span><span class="p">]</span>
+
+<span class="p">[</span><span class="s1">&#39;admitted_from_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;admitted_from_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;birth_datetime&#39;</span><span class="p">,</span>
+<span class="s1">&#39;care_site_id&#39;</span><span class="p">,</span> <span class="s1">&#39;day_of_birth&#39;</span><span class="p">,</span> <span class="s1">&#39;discharged_to_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;discharged_to_source_value&#39;</span><span class="p">,</span>
+<span class="s1">&#39;ethnicity_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;ethnicity_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;ethnicity_source_value&#39;</span><span class="p">,</span>
+<span class="s1">&#39;gender_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;gender_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;gender_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;location_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;month_of_birth&#39;</span><span class="p">,</span> <span class="s1">&#39;person_id&#39;</span><span class="p">,</span> <span class="s1">&#39;person_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;preceding_visit_occurrence_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;provider_id&#39;</span><span class="p">,</span> <span class="s1">&#39;race_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;race_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;race_source_value&#39;</span><span class="p">,</span>
+<span class="s1">&#39;visit_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_end_date&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_end_datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_occurrence_id&#39;</span><span class="p">,</span>
+<span class="s1">&#39;visit_source_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_source_value&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_start_date&#39;</span><span class="p">,</span> <span class="s1">&#39;visit_start_datetime&#39;</span><span class="p">,</span>
+<span class="s1">&#39;visit_type_concept_id&#39;</span><span class="p">,</span> <span class="s1">&#39;year_of_birth&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
 </section>
 </section>
 
