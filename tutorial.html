@@ -52,6 +52,9 @@ For executing a query, we get the api key and ip address from the web dashboard 
 <span class="n">sql_query</span> <span class="o">=</span> <span class="s2">&quot;select count(*) as numpeople from public.condition_era_death&quot;</span>
 <span class="n">result</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">buyer</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">sql_query</span><span class="p">)</span>
 
+<span class="n">sql_query</span> <span class="o">=</span> <span class="s2">&quot;select count(*) as people_per_condition from person&quot;</span>
+<span class="n">result</span><span class="p">,</span> <span class="n">accuracy</span> <span class="o">=</span> <span class="n">buyer</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">sql_query</span><span class="p">)</span>
+
 <span class="c1"># execution result and accuracy of the query</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
@@ -70,18 +73,12 @@ For executing a query, we get the api key and ip address from the web dashboard 
 <span class="n">accuracy</span> <span class="o">===&gt;</span> <span class="n">within</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">true</span> <span class="n">value</span> <span class="k">with</span> <span class="mi">95</span><span class="o">%</span> <span class="n">probability</span>
 
 <span class="o">+--------------------------------------------------------------------------------+</span>
-<span class="n">query</span> <span class="o">===&gt;</span> <span class="n">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">numpeople</span> <span class="kn">from</span> <span class="nn">public.condition_era_death</span>
-<span class="n">result</span> <span class="o">===&gt;</span> <span class="p">[[</span><span class="s1">&#39;numpeople&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">30297</span><span class="p">]]</span>
-<span class="n">accuracy</span> <span class="o">===&gt;</span> <span class="n">within</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">true</span> <span class="n">value</span> <span class="k">with</span> <span class="mi">95</span><span class="o">%</span> <span class="n">probability</span>
-
-<span class="o">+--------------------------------------------------------------------------------+</span>
-<span class="n">query</span> <span class="o">===&gt;</span> <span class="n">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">numpeople</span> <span class="kn">from</span> <span class="nn">public.condition_era_death</span>
-<span class="n">result</span> <span class="o">===&gt;</span> <span class="p">[[</span><span class="s1">&#39;numpeople&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">30297</span><span class="p">]]</span>
-<span class="n">accuracy</span> <span class="o">===&gt;</span> <span class="n">within</span><span class="p">:</span> <span class="mf">0.1</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">true</span> <span class="n">value</span> <span class="k">with</span> <span class="mi">95</span><span class="o">%</span> <span class="n">probability</span>
-
-<span class="o">+--------------------------------------------------------------------------------+</span>
+<span class="n">query</span> <span class="o">===&gt;</span> <span class="n">select</span> <span class="n">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">as</span> <span class="n">people_per_condition</span> <span class="kn">from</span> <span class="nn">person</span>
+<span class="n">result</span> <span class="o">===&gt;</span> <span class="p">[[</span><span class="s1">&#39;people_per_condition&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">2000000</span><span class="p">]]</span>
+<span class="n">accuracy</span> <span class="o">===&gt;</span> <span class="n">within</span><span class="p">:</span> <span class="mf">0.0</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">true</span> <span class="n">value</span> <span class="k">with</span> <span class="mi">95</span><span class="o">%</span> <span class="n">probability</span>
 </pre></div>
 </div>
+<p>Get queryable table columns :</p>
 </section>
 </section>
 
@@ -147,7 +144,7 @@ For executing a query, we get the api key and ip address from the web dashboard 
       &copy;2022, Fortress Labs.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.2</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 6.1.3</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |
