@@ -59,6 +59,7 @@ Pretty print query history :
 Get queryable table columns :
 
 .. code-block:: python
+    
     ###########################################
     ####      Print Table DDL columns      ####
     ###########################################
