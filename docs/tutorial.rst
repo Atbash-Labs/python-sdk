@@ -4,8 +4,8 @@ Tutorial
 The best way to interact with the network is to use the ``Buyer`` extension objects and its associated methods.
 
 
-1. Querying health datasets
------------------------------
+Querying health datasets 
+----------------------------
 Executing a query :
 For executing a query, we get the api key and ip address from the web dashboard and then create a
 ``Buyer`` instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results.
@@ -33,8 +33,15 @@ For executing a query, we get the api key and ip address from the web dashboard 
     print(accuracy)
 
 
+NOTE!! : Related to SQL querying rules
+----------------------------------------
 
-Pretty print query history :
+allowed:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions
+not allowed:  join, selection of columns that aren't in the group by, arbitrary sum/min/max/avgs
+
+
+Pretty print query history 
+------------------------------
 
 .. code-block:: python
 
@@ -56,7 +63,8 @@ Pretty print query history :
 
 
 
-Get queryable table columns :
+Get queryable table columns
+------------------------------
 
 .. code-block:: python
     
@@ -64,7 +72,7 @@ Get queryable table columns :
     ####      Print Table DDL columns      ####
     ###########################################
 
-    # Print columns
+
     print("-----------------------COLUMNS-----------------------")
     columns = buyer.get_columns()
     print(columns["PERSON"])
