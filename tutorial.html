@@ -36,7 +36,7 @@
 <h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this heading">¶</a></h1>
 <p>The best way to interact with the network is to use the <code class="docutils literal notranslate"><span class="pre">Buyer</span></code> extension objects and its associated methods.</p>
 <section id="querying-health-datasets">
-<h2>1. Querying health datasets<a class="headerlink" href="#querying-health-datasets" title="Permalink to this heading">¶</a></h2>
+<h2>Querying health datasets<a class="headerlink" href="#querying-health-datasets" title="Permalink to this heading">¶</a></h2>
 <p>Executing a query :
 For executing a query, we get the api key and ip address from the web dashboard and then create a
 <code class="docutils literal notranslate"><span class="pre">Buyer</span></code> instance and then call a query method on that buyer instance with a SQL query string and then print recieved query accuracy and results.</p>
@@ -60,7 +60,14 @@ For executing a query, we get the api key and ip address from the web dashboard 
 <span class="nb">print</span><span class="p">(</span><span class="n">accuracy</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Pretty print query history :</p>
+</section>
+<section id="note-related-to-sql-querying-rules">
+<h2>NOTE!! : Related to SQL querying rules<a class="headerlink" href="#note-related-to-sql-querying-rules" title="Permalink to this heading">¶</a></h2>
+<p>allowed:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions
+not allowed:  join, selection of columns that aren’t in the group by, arbitrary sum/min/max/avgs</p>
+</section>
+<section id="pretty-print-query-history">
+<h2>Pretty print query history<a class="headerlink" href="#pretty-print-query-history" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">###########################################</span>
 <span class="c1">####        Print Query History        ####</span>
 <span class="c1">###########################################</span>
@@ -78,12 +85,14 @@ For executing a query, we get the api key and ip address from the web dashboard 
 <span class="n">accuracy</span> <span class="o">===&gt;</span> <span class="n">within</span><span class="p">:</span> <span class="mf">0.0</span><span class="o">%</span> <span class="n">of</span> <span class="n">the</span> <span class="n">true</span> <span class="n">value</span> <span class="k">with</span> <span class="mi">95</span><span class="o">%</span> <span class="n">probability</span>
 </pre></div>
 </div>
-<p>Get queryable table columns :</p>
+</section>
+<section id="get-queryable-table-columns">
+<h2>Get queryable table columns<a class="headerlink" href="#get-queryable-table-columns" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">###########################################</span>
 <span class="c1">####      Print Table DDL columns      ####</span>
 <span class="c1">###########################################</span>
 
-<span class="c1"># Print columns</span>
+
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-----------------------COLUMNS-----------------------&quot;</span><span class="p">)</span>
 <span class="n">columns</span> <span class="o">=</span> <span class="n">buyer</span><span class="o">.</span><span class="n">get_columns</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">columns</span><span class="p">[</span><span class="s2">&quot;PERSON&quot;</span><span class="p">])</span>
@@ -130,7 +139,10 @@ For executing a query, we get the api key and ip address from the web dashboard 
 <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#querying-health-datasets">1. Querying health datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#querying-health-datasets">Querying health datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#note-related-to-sql-querying-rules">NOTE!! : Related to SQL querying rules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pretty-print-query-history">Pretty print query history</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-queryable-table-columns">Get queryable table columns</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fortress_sdk.html">fortress_sdk package</a></li>
