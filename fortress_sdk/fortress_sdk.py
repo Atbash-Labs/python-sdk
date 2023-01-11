@@ -133,7 +133,6 @@ class Buyer:
         Return table ddl columns
 
         :param str query_key: [optional] subkey query key
-        :param str query: query string
 
         :return: returns the list of columns
         :rtype: list
@@ -152,7 +151,8 @@ class Buyer:
             print(error)
             return None
         else:
-            return rsp["columns"]
+            columns = rsp["columns"]
+            return columns
 
     def print_query_history(self):
         """Pretty print the history queries with accuracy and results"""
