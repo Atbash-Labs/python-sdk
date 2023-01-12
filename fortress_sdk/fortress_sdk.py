@@ -1,87 +1,24 @@
-import pysftp
 import requests
-from prettytable import PrettyTable
-
-
-class Sftp:
-    def __init__(self, api_key, ip_addr, port=8080):
-        """Constructor Method"""
-        # Set connection object to None (initial value)
-        self.connection = None
-        self.api_key = api_key
-        self.ip_addr = ip_addr
-        self.port = port
-
-    def _connect(self):
-        """Connects to the sftp server and returns the sftp connection object"""
-
-        try:
-            # Get the sftp connection object
-            self.connection = pysftp.Connection(
-                host=self.ip_addr,
-                username=self.username,
-                password=self.password,
-                port=self.port,
-            )
-        except Exception as err:
-            raise Exception(err)
-        finally:
-            print(f"Connected to {self.ip_addr} as {self.username}.")
-
-    def get_connection(self):
-        """Initiate a sftp connection"""
-
-        enclave_url = "https://{}:{}/get_creds".format(self.ip_addr, self.port)
-
-        payload = {"api_key": self.api_key}
-        r = requests.get(enclave_url, params=payload)
-        creds = r.json()
-
-        self.username = creds["username"]
-        self.password = creds["password"]
-
-        self._connect()
-
-    def disconnect(self):
-        """Closes the sftp connection"""
-        self.connection.close()
-        print(f"Disconnected from host {self.ip_addr}")
-
-    def upload(self, source_local_path):
-        """
-        Uploads the source files from local to the sftp server.
-
-        Args:
-            source_local_path: local file path for patient data
-        """
-
-        try:
-            remote_path = "/var/sftp/Data"
-
-            print(
-                f"uploading to {self.hostname} as {self.username} from source local path: {source_local_path}"
-            )
-
-            # Upload file with SFTP
-            self.connection.put(source_local_path, remote_path)
-            print("upload completed")
-
-        except Exception as err:
-            raise Exception(err)
-
-    def listdir(self, remote_path):
-        """lists all the files and directories in the specified path and returns them
-
-        Args:
-            remote_path: remote file path for patient data files list retrieval
-        """
-        for obj in self.connection.listdir(remote_path):
-            yield obj
 
 
 class Buyer:
+    """
+    ``Buyer`` object to interact with the network
+
+    :param api_key: The ``API KEY`` from the website console
+    :type api_key: str
+
+    :param ip_addr: The ``IP Address`` key from the website console
+    :type ip_addr: str
+
+    :param port: The ``PORT`` from the website console
+    :type port: int
+
+    :param use_https: the boolean for the https toggle
+    :type use_https: bool
+    """
+
     def __init__(self, api_key, ip_addr, port=8080, use_https=False):
-        """Constructor Method"""
         self.api_key = api_key
         self.query_count = 0
         self.all_queries = []
@@ -94,10 +31,11 @@ class Buyer:
             self.key_list = [self.get_key()]
 
     def get_key(self):
-        """Return the sub key for this buyer
+        """
+        Return the sub key for this buyer
 
-        Returns:
-            returns a subkey
+        :return: the sub key for the instantiated buyer object
+        :rtype: str
         """
         subkey_url = f"{self.url}/get_subkey"
 
@@ -119,10 +57,11 @@ class Buyer:
             return None
 
     def get_key_list(self):
-        """Return the list of sub keys for this buyer
+        """
+        Return the list of sub keys for this buyer
 
-        Returns:
-            returns the list of sub keys
+        :return: returns the list of sub keys
+        :rtype: list
         """
         subkey_list_url = f"{self.url}/list_subkeys"
 
@@ -141,14 +80,14 @@ class Buyer:
             return None
 
     def query(self, query_key=None, query=""):
-        """Initiate the query and return the result
+        """
+        Initiate the query and return the result
 
-        Args:
-            query_key: [optional] subkey query key
-            query: sql query string
+        :param str query_key: [optional] subkey query key
+        :param str query: query string
 
-        Returns:
-            returns the accuracy,result of the query
+        :return: return ``result`` and ``accuracy`` of the query
+        :rtype: list,str
         """
         if query_key is None:
             query_key = self.key_list[0]
@@ -190,12 +129,13 @@ class Buyer:
         return result, accuracy
 
     def get_columns(self, query_key=None):
-        """Return table ddl columns
-        Args:
-            query_key: subkey query key
+        """
+        Return table ddl columns
 
-        Returns:
-            returns the list of columns
+        :param str query_key: [optional] subkey query key
+
+        :return: returns the list of columns
+        :rtype: list
         """
 
         if query_key is None:
@@ -211,18 +151,21 @@ class Buyer:
             print(error)
             return None
         else:
-            return rsp["columns"]
+            columns = rsp["columns"]
+            return columns
 
     def print_query_history(self):
         """Pretty print the history queries with accuracy and results"""
-        pt = PrettyTable()
-        pt.field_names = [
-            "Query",
-            "Result",
-            "Accuracy",
-        ]
+
+        query_format = " query ===> {q} \n result ===> {r} \n accuracy ===> {a} \n"
+
+        table_frame = "+" + "-" * 80 + "+"
 
         for query in self.all_queries:
-            pt.add_row([query["query"], query["result"], query["accuracy"][44:]])
-
-        print(pt)
+            print(table_frame)
+            query_string = query_format.format(
+                q=query["query"],
+                r=query["result"],
+                a=query["accuracy"][44:],
+            )
+            print(query_string)
