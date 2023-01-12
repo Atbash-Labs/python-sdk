@@ -36,8 +36,8 @@ For executing a query, we get the api key and ip address from the web dashboard 
 NOTE!! : Related to SQL querying rules
 ----------------------------------------
 
-allowed:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions
-not allowed:  join, selection of columns that aren't in the group by, arbitrary sum/min/max/avgs
+- **allowed**:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions
+- **not allowed**:  join, selection of columns that aren't in the group by, arbitrary sum/min/max/avgs
 
 
 Pretty print query history 

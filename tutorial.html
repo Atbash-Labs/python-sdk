@@ -63,8 +63,10 @@ For executing a query, we get the api key and ip address from the web dashboard 
 </section>
 <section id="note-related-to-sql-querying-rules">
 <h2>NOTE!! : Related to SQL querying rules<a class="headerlink" href="#note-related-to-sql-querying-rules" title="Permalink to this heading">¶</a></h2>
-<p>allowed:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions
-not allowed:  join, selection of columns that aren’t in the group by, arbitrary sum/min/max/avgs</p>
+<ul class="simple">
+<li><p><strong>allowed</strong>:  Group by, selection of count, sum/min/max/avg of limited columns, of raw columns that are the group-by columns, any where conditions</p></li>
+<li><p><strong>not allowed</strong>:  join, selection of columns that aren’t in the group by, arbitrary sum/min/max/avgs</p></li>
+</ul>
 </section>
 <section id="pretty-print-query-history">
 <h2>Pretty print query history<a class="headerlink" href="#pretty-print-query-history" title="Permalink to this heading">¶</a></h2>
