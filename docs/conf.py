@@ -9,7 +9,7 @@
 project = "fortress_sdk"
 copyright = "2022, Fortress Labs"
 author = "Fortress Labs"
-release = "0.1.0"
+release = "0.2.0"
 
 # add sourcecode to path
 import sys, os

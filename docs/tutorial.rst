@@ -63,17 +63,32 @@ Pretty print query history
 
 
 
+Get queryable table names
+----------------------------
+
+.. code-block:: python
+
+    print("----------------------TABLE NAMES-----------------------")
+    columns = buyer.get_columns()
+    print(columns.keys())
+
+    ['CONDITION_ERA', 'CONDITION_ERA_CONDITION_OCCURRENCE', 'CONDITION_ERA_DEATH', 
+    'CONDITION_ERA_DEVICE_EXPOSURE', 'CONDITION_ERA_DOSE_ERA', 'CONDITION_ERA_DRUG_ERA', 
+    'CONDITION_ERA_DRUG_EXPOSURE', 'CONDITION_ERA_EPISODE', 'CONDITION_ERA_MEASUREMENT', 
+    ...
+    ...
+    'PROCEDURE_OCCURRENCE_VISIT_DETAIL', 'PROCEDURE_OCCURRENCE_VISIT_OCCURRENCE', 'SPECIMEN', 
+    'SPECIMEN_VISIT_DETAIL', 'SPECIMEN_VISIT_OCCURRENCE', 'VISIT_DETAIL', 
+    'VISIT_DETAIL_VISIT_OCCURRENCE', 'VISIT_OCCURRENCE']
+
+
+
 Get queryable table columns
 ------------------------------
 
 .. code-block:: python
     
-    ###########################################
-    ####      Print Table DDL columns      ####
-    ###########################################
-
-
-    print("-----------------------COLUMNS-----------------------")
+    print("----------------------TABLE COLUMNS-----------------------")
     columns = buyer.get_columns()
     print(columns["PERSON"])
     print(columns["PERSON_VISIT_OCCURRENCE"])
