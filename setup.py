@@ -1,6 +1,6 @@
 from setuptools import setup, find_packages
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 DESCRIPTION = "Fortress SDK"
 LONG_DESCRIPTION = (
     "SDK for accesssing and performing private computation on Fortress platform"
