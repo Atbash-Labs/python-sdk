@@ -9,10 +9,10 @@ from fortress_sdk import Buyer
 
 
 api_key = "buyer_key"  # get this from the fortress web dashboard
-ip_addr = "127.0.0.1"
+ip_addr = "test-enclave.fortressenclaves-dev.com"
 
 # Initialize a buyer instance
-buyer = Buyer(api_key, ip_addr)
+buyer = Buyer(api_key, ip_addr, use_https=True)
 
 
 # Initiate a query
