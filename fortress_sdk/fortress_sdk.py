@@ -169,3 +169,20 @@ class Buyer:
                 a=query["accuracy"][44:],
             )
             print(query_string)
+
+    def check_ping(self):
+        """
+        Return ping status for the enclave
+
+        :return: status of the enclave
+        :rtype: bool
+        """
+        ping_url = f"{self.url}/health"
+
+        r = requests.get(ping_url)
+        rsp = r.json()
+
+        if rsp["status"] == "ok":
+            return True
+        else:
+            return False
